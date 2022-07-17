@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2 class="New book_new"></h2>
+      <%= form_with model: @book, url: books_path, method: :post do |f| %>
+        <%= render "form", f: f %>
+      <% end %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              image
+            </td>
+            <td>
+              <%= link_to book_path(@book) do %>
+                <%= @book.title %>
+              <% end %>
+            </td>
+            <% if @book.user == current_user %>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{@book.id}", "data-confirm" => "本当に消しますか？" %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

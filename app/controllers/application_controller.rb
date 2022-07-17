@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameter, if: :devise_controller?
+  before_action :authenticate_user!, except: [:top, :about]
   
   def after_user_sign_in_path_for(resource)
     root_path
